@@ -1,0 +1,55 @@
+" Install Plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent execute "!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'rstacruz/vim-opinion'
+Plug 'jszakmeister/vim-togglecursor'
+call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Unset the LAST SEARCH PATTERN register by hitting return
+nnoremap <silent> <CR> :noh<CR><CR>
+" Enable cursor line highlighting
+set cursorline
+" Enable overlength line highlighting
+set colorcolumn=80
+" Disable mouse
+set mouse=
+set ttymouse=
+" Set default encoding and format
+set fileencoding=utf-8 tabstop=2 shiftwidth=2 expandtab
+" Set update interval
+set updatetime=100
+" Show matching brackets when text indicator is over them
+set showmatch
+" No annoying sounds
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+" Disable arrow keys
+map <Left> <Nop>
+map <Right> <Nop>
+map <Up> <Nop>
+map <Down> <Nop>
+" Load .md files as Markdown
+autocmd BufNewFile,BufReadPost *.md,*.markdown set filetype=markdown
+autocmd FileType markdown set tw=80
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Aliases
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set leader key to ,
+let mapleader = ','
+" Copy to / from external clipboard
+map <leader>y :w !xsel -i -b<CR>
+map <leader>p :r !xsel -p \| sed 's/^ *//;s/ *$//'<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Theme
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme desert

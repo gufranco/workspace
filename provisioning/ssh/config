@@ -1,0 +1,6 @@
+Host *
+  IdentityFile ~/.ssh/id_rsa
+  ForwardAgent yes
+  LogLevel INFO
+  ServerAliveInterval 120
+  StrictHostKeyChecking ask

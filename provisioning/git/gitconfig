@@ -1,0 +1,91 @@
+[user]
+# Name
+name = PUT_YOUR_NAME_HERE
+
+# E-mail
+email = PUT_YOUR_EMAIL_HERE
+
+# Require setting user.name and email per-repo
+useConfigOnly = true
+
+[core]
+# Global ignore
+excludesfile = ~/.gitignore_global
+
+# Don't convert line break to CRLF. Keep CR
+autocrlf = input
+
+# Paginate results
+pager = less -FRSX
+
+# Remove whitespaces, use CR and indent using spaces
+whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+# Default text editor
+editor = vim -f -u NONE -c 'set nocompatible' -c 'set nobackup noswapfile nowritebackup' -c 'set cursorline' -c 'set number'
+
+[color]
+ui = auto
+
+[color "status"]
+added = green
+changed = yellow
+untracked = red
+
+[color "branch"]
+current = magenta
+local = yellow
+remote = green
+
+[color "diff"]
+meta = yellow
+frag = magenta
+old = red
+new = green
+
+[branch]
+# Always merge using rebase
+autosetuprebase = always
+
+[rerere]
+# Reuse recorded resolution
+enabled = true
+
+[push]
+# Only push current branch
+default = current
+
+[help]
+# Suggest the correct command
+autocorrect = 1
+
+[alias]
+# Less verbose status
+st = status -sb
+
+# Syncronize local branchs with remote
+fe = fetch origin
+
+# Fork a branch
+fork = checkout -b
+
+# Pretty log
+lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+# Remote commits ahead of mine
+incoming = !(git fetch --quiet && git log --pretty=format:'%C(yellow)%h %C(white)- %C(red)%an %C(white)- %C(cyan)%d%Creset %s %C(white)- %ar%Creset' ..@{u})
+
+# Remote commits ahead of local
+outgoing = !(git fetch --quiet && git log --pretty=format:'%C(yellow)%h %C(white)- %C(red)%an %C(white)- %C(cyan)%d%Creset %s %C(white)- %ar%Creset' @{u}..)
+
+# Revert git add
+unstage = reset HEAD --
+
+# Undo modifications to a file
+undo = checkout --
+
+# Review commits before pushing
+ready = rebase -i @{u}
+
+# Create a package
+package = !tar --exclude=".git" --exclude="node_modules" -cvzf ../$(basename "$PWD")_$(date +"%Y-%m-%d_%H-%M-%S").tgz *

@@ -1,0 +1,37 @@
+################################################################################
+# Aliases
+################################################################################
+alias bc="bc -l"
+alias cd..="cd .."
+alias la="ls -aF"
+alias ld="ls -ld"
+alias less="less -R"
+alias ll="ls -la"
+alias mkdir="mkdir -pv"
+alias more="more -R"
+alias ping="ping -c 5"
+alias wget="wget -c -N"
+alias docker-compose='docker run --rm \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v "$PWD:/rootfs/$PWD" \
+    -w="/rootfs/$PWD" \
+    docker/compose:1.23.2'
+
+################################################################################
+# Settings
+################################################################################
+export TERM="screen-256color"
+export EDITOR='vim'
+export HISTCONTROL=ignoredups
+export HISTIGNORE="cd:ls:[bf]g:clear:exit"
+export LANG=pt_BR.UTF-8
+
+################################################################################
+# Oh-my-zsh
+################################################################################
+export ZSH=~/.oh-my-zsh
+ZSH_THEME="awesomepanda"
+DISABLE_AUTO_UPDATE="true"
+HIST_STAMPS="dd/mm/yyyy"
+plugins=(ssh-agent)
+source $ZSH/oh-my-zsh.sh
